@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSH Zhipu Balance - 标题显示修复</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f5f5f5;
+        }
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .demo-title {
+            margin-top: 0;
+            color: #333;
+        }
+        .demo-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        .feature-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .feature-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin: 8px 0;
+        }
+        .note {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .panel-demo {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 12px 12px 16px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+        }
+        .panel-title {
+            flex: 1;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .panel-icon {
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            background: transparent;
+            color: #666;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+        }
+        .panel-section {
+            padding: 10px 0 4px;
+        }
+        .section-title {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            font-weight: 600;
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            cursor: pointer;
+            user-select: none;
+            border-radius: 6px;
+            padding: 2px 4px;
+            transition: background-color 0.12s ease;
+        }
+        .section-title:hover {
+            background: #f0f0f0;
+        }
+        .section-chevron {
+            flex: none;
+            font-size: 10px;
+            line-height: 1;
+            transform: translateY(-1px);
+        }
+        .panel-row {
+            padding: 7px 0;
+        }
+        .row-head {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .row-label {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .row-value {
+            flex: none;
+            font-variant-numeric: tabular-nums;
+            color: #666;
+        }
+        .row-value.state-warn {
+            color: #f59e0b;
+        }
+        .row-value.state-error {
+            color: #ef4444;
+        }
+        .panel-bar {
+            margin-top: 5px;
+            height: 4px;
+            border-radius: 2px;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+        .panel-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: #adb2b8;
+        }
+        .panel-bar-fill.state-ok {
+            background: #22c55e;
+        }
+        .panel-bar-fill.state-warn {
+            background: #f59e0b;
+        }
+        .panel-bar-fill.state-error {
+            background: #ef4444;
+        }
+        .panel-sub {
+            margin-top: 4px;
+            font-size: 11px;
+            color: #999;
+        }
+        .panel-divider {
+            height: 1px;
+            background: #eee;
+            margin: 6px 0;
+        }
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .problem-solution {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .problem-solution > div {
+            flex: 1;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .problem {
+            background: #ffebee;
+            border: 1px solid #f44336;
+        }
+        .solution {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">DSH Zhipu Balance - 标题显示修复</h1>
+        
+        <div class="demo-description">
+            <p>我已经修复了 dsh-zhipu-balance 插件中账号额度和模型用量标题不显示的问题。</p>
+            
+            <div class="feature-list">
+                <h3>✅ 修复内容：</h3>
+                <ul>
+                    <li>✅ 修复了账号额度标题不显示的问题</li>
+                    <li>✅ 确保模型用量标题正确显示</li>
+                    <li>✅ 优化了标题显示逻辑</li>
+                    <li>✅ 保持了原有的功能逻辑</li>
+                </ul>
+            </div>
+            
+            <div class="problem-solution">
+                <div class="problem">
+                    <h4>🚫 问题（之前）</h4>
+                    <p>用户勾选了"显示模型用量"后，看到：</p>
+                    <ul>
+                        <li>没有"账号额度"标题</li>
+                        <li>没有"模型用量"标题</li>
+                        <li>内容显示混乱，缺乏层次</li>
+                    </ul>
+                </div>
+                <div class="solution">
+                    <h4>✅ 解决方案（现在）</h4>
+                    <p>修复后，用户看到：</p>
+                    <ul>
+                        <li>明确的"账号额度"标题</li>
+                        <li>清晰的"模型用量"标题</li>
+                        <li>层次分明的内容结构</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="panel-demo">
+                <div class="panel-header">
+                    <div class="panel-title">智谱余额</div>
+                    <div class="panel-icon">↻</div>
+                    <div class="panel-icon">⚙</div>
+                    <div class="panel-icon">▸</div>
+                </div>
+                
+                <div class="panel-section">
+                    <div class="section-title">
+                        <span class="section-chevron">▾</span>
+                        <span>账号额度</span>
+                    </div>
+                    <div class="panel-row">
+                        <div class="row-head">
+                            <span class="row-label">Token 额度</span>
+                            <span class="row-value state-warn">已用 65%</span>
+                        </div>
+                        <div class="panel-bar">
+                            <div class="panel-bar-fill state-warn" style="width: 65%"></div>
+                        </div>
+                        <div class="panel-sub">剩 35,000 / 共 100,000 tokens</div>
+                    </div>
+                    <div class="panel-row">
+                        <div class="row-head">
+                            <span class="row-label">周窗口</span>
+                            <span class="row-value state-ok">已用 30%</span>
+                        </div>
+                        <div class="panel-bar">
+                            <div class="panel-bar-fill state-ok" style="width: 30%"></div>
+                        </div>
+                        <div class="panel-sub">剩 7,000 / 共 10,000 tokens</div>
+                    </div>
+                </div>
+                
+                <div class="panel-divider"></div>
+                
+                <div class="panel-section">
+                    <div class="section-title">
+                        <span class="section-chevron">▾</span>
+                        <span>模型用量</span>
+                    </div>
+                    <div class="panel-row">
+                        <div class="row-head">
+                            <span class="row-label">glm-4</span>
+                            <span class="row-value">45,230 tokens</span>
+                        </div>
+                    </div>
+                    <div class="panel-row">
+                        <div class="row-head">
+                            <span class="row-label">glm-3-turbo</span>
+                            <span class="row-value">23,450 tokens</span>
+                        </div>
+                    </div>
+                    <div class="panel-row">
+                        <div class="row-head">
+                            <span class="row-label">glm-4v</span>
+                            <span class="row-value">12,890 tokens</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-list">
+                <h3>📋 技术实现：</h3>
+                <ul>
+                    <li>修改了账号额度显示逻辑，确保在没有资源包时也会显示"账号额度"标题</li>
+                    <li>优化了主标题逻辑，根据数据内容动态显示合适的标题</li>
+                    <li>添加了明确的"模型用量"标题</li>
+                    <li>保持了原有的折叠/展开功能</li>
+                </ul>
+            </div>
+            
+            <div class="note">
+                <h4>🔧 修复细节：</h4>
+                <p><strong>问题1：</strong>账号额度标题不显示</p>
+                <p>原因：只有在有资源包时才会显示账号额度，但没有相应的标题</p>
+                <p>解决：添加了"账号额度"标题，并确保在没有资源包时显示</p>
+                
+                <p><strong>问题2：</strong>模型用量标题不显示</p>
+                <p>原因：模型用量直接显示在API板块内，但没有独立的标题</p>
+                <p>解决：添加了"模型用量"标题，并使用分隔线与前面内容区分</p>
+            </div>
+            
+            <div class="feature-list">
+                <h3>💡 优势：</h3>
+                <ul>
+                    <li><span class="highlight">层次清晰</span> - 每个部分都有明确的标题</li>
+                    <li><span class="highlight">易于理解</span> - 用户可以快速识别不同类型的信息</li>
+                    <li><span class="highlight">结构完整</span> - 所有内容都有适当的标题和分隔</li>
+                    <li><span class="highlight">用户体验</span> - 提供了更好的视觉层次和信息组织</li>
+                </ul>
+            </div>
+            
+            <div class="note">
+                <h4>🚀 使用方法：</h4>
+                <ol>
+                    <li>在DSH中启用 dsh-zhipu-balance 插件</li>
+                    <li>点击插件右上角的设置按钮（⚙）</li>
+                    <li>在设置中勾选"显示模型用量"选项</li>
+                    <li>现在您应该能看到清晰的"账号额度"和"模型用量"标题</li>
+                    <li>设置会自动保存，下次打开插件时会保持您的选择</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
