@@ -16,22 +16,33 @@ re-scoped to the Zhipu ecosystem.
   config" leaves `settings.yaml` untouched.
 - **Model usage** (top section) — fed by the console expense-bill APIs, which
   book near-real-time:
-  - first row combines balance (left) and month-to-date spend (right);
+  - first row after the month list combines balance (left) with month-to-date
+    spend + total tokens (right);
   - "This month" / "Today" sub-sections list per-model tokens and settlement
-    amounts, pricing tiers merged;
-  - embedded **spend alert**: crossing a manual threshold (month tokens /
-    month ¥) turns the tab dot amber; with "stop calls at threshold" checked,
-    the host parks the call endpoint on a loopback refuse port — new calls
-    fail fast at zero cost until the guard is lifted.
+    amounts, pricing tiers merged, each with a spend total (tokens included);
+  - embedded **spend alert**, edited right in the panel:
+    - period toggle: this month / today;
+    - threshold is a "manual input + preset dropdown" box (10 / 20 / 30 / 50 /
+      1M … 1B, thousands separators) plus a unit dropdown (token / ¥) —
+      period × unit covers all four metering modes;
+    - the "stop calls at threshold" checkbox stays disabled until a threshold
+      value is set;
+    - once checked and the threshold is crossed, the tab dot turns amber and
+      the host parks the call endpoint on a loopback refuse port — new calls
+      fail fast at zero cost until the guard is lifted; unchecked, the dot
+      never turns amber.
 - **Resource packs** — balance / total / progress bar / expiry per pack;
   depleted (0 left) and expired/cancelled packs sink into a collapsed
   "已失效 (inactive)" sub-section.
-- **Coding Plan** — 5-hour window, weekly window, monthly MCP lane; embedded
-  warn/error percent thresholds with colored progress bars.
+- **Coding Plan** — 5-hour window, weekly window, monthly MCP lane; a
+  **peak/off-peak badge** beside the title (peak = Beijing weekdays
+  14:00–18:00 at full deduction, all other times 50%); embedded warn/error
+  percent thresholds with colored progress bars.
 - **Collapsed tab** — right-edge vertical tab with a status dot: green =
-  callable (balance > 0 / data healthy), amber = spend alert hit, red = guard
-  active or balance exhausted, gray = unknown. Optionally **draggable** with
-  position memory.
+  callable (balance > 0 / data healthy), amber = stop-calls checked and
+  threshold crossed (guard active), red = balance exhausted or 5h/weekly
+  window used up, gray = unknown. Optionally **draggable** with position
+  memory.
 
 ## Data sources
 
@@ -44,7 +55,7 @@ auth (raw-key fallback on 401):
 | `GET {base}/api/biz/tokenAccounts/list/my` | resource pack list (total / balance / frozen / expiry / status) |
 | `GET {base}/api/biz/account/query-customer-account-report` | cash balance (console finance mirror) |
 | `GET {base}/api/finance/chartBill/product/{YYYY-MM}` | current-month bill rows per product (tokens + settlement amount) |
-| `GET {base}/api/finance/expenseBill/expenseBillListByDay?billingMonth={YYYY-MM}` | per-order daily rows (aggregated for today) |
+| `GET {base}/api/finance/expenseBill/expenseBillList?billingMonth={YYYY-MM}` | line-item bill rows (source for "today"; the by-day view only finalizes yesterday) |
 
 Call-endpoint switching goes through the dsh settings service
 (`settings.update("llm-pi-ai", …)` deep-merges `baseURL` only); `llm-pi-ai`
