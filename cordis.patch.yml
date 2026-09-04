@@ -9,7 +9,7 @@
 #   apiBaseUrl     Zhipu open platform base (CN default open.bigmodel.cn)
 #   codingRefs     credential refs probed for the Coding Plan row
 #   codingBaseUrl  coding plan base (CN: open.bigmodel.cn, global: api.z.ai)
-#   usageDetail    fetch same-day per-model usage detail (best effort), default true
+#   usageDetail    fetch calendar-month per-model usage detail (best effort), default true
 #   warnPercent / errorPercent  usage row thresholds, defaults 70 / 90
 
 - insert:
