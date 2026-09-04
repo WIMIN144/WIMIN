@@ -48,6 +48,8 @@
 模型调用地址切换通过 dsh settings 服务（`settings.update("llm-pi-ai", …)` 深合并
 只改 `baseURL`），`llm-pi-ai` 热监听即时生效。
 
+> **适用版本**：DSH `>= 0.1.2-alpha.4`（在 `0.1.2-alpha.5` 上开发与实测；更早版本无 settings 热更新与插件 HMR，不保证可用）
+
 ## 安装
 
 ```sh

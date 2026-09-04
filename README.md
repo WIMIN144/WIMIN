@@ -61,6 +61,8 @@ Call-endpoint switching goes through the dsh settings service
 (`settings.update("llm-pi-ai", …)` deep-merges `baseURL` only); `llm-pi-ai`
 picks it up live.
 
+> **Requires** DSH `>= 0.1.2-alpha.4` (developed and tested on `0.1.2-alpha.5`; older builds lack the settings hot-update and plugin HMR this plugin relies on — not guaranteed).
+
 ## Install
 
 ```sh
